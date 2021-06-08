@@ -6,8 +6,8 @@ provider "aws" {
 terraform {
   required_version = ">= 0.12"
   backend "s3" {
-    bucket = "gw-test-terraform-state"
-    key = "gw-test-infra/terraform.tfstate"
-    region = "ap-southeast-1"
+    bucket = "terraform-state"
+    key = "test-infra/terraform.tfstate"
+    region = ""
   }
 }
