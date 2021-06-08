@@ -6,7 +6,7 @@ module "eks" {
   manage_aws_auth = false
   map_roles = [
     {
-      rolearn  = "arn:aws:iam::412866647334:role/test-eks-JU7rGoiC2020122215301741080000000c"
+      rolearn  = ""
       username = "system:node:{{EC2PrivateDNSName}}"
       groups   = ["system:bootstrappers","system:nodes"]
     },
@@ -55,7 +55,7 @@ module "eks_node_group" {
 resource "aws_eks_node_group" "managed_workers_a" {
   cluster_name    = local.cluster_name
   node_group_name = "eks-test-managed-workers"
-  node_role_arn   = "arn:aws:iam::412866647334:role/test-eks-JU7rGoiC2020122215301741080000000c"
+  node_role_arn   = ""
   subnet_ids      = module.vpc.private_subnets
   scaling_config {
     desired_size = 1
@@ -68,8 +68,8 @@ resource "aws_eks_node_group" "managed_workers_a" {
     app = "nginx"
   }
   remote_access {
-    ec2_ssh_key               = "gw-test-keypair"
-    source_security_group_ids = ["sg-08190203cc01889dc"]
+    ec2_ssh_key               = "test-keypair"
+    source_security_group_ids = [""]
   }
   lifecycle {
     create_before_destroy = true
